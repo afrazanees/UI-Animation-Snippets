@@ -1,0 +1,330 @@
+:root {
+    --bg-color: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666;
+    
+    /* Snappy Spring Animation */
+    --spring-easing: cubic-bezier(0.35, 1.25, 0.6, 1);
+    --duration: 0.6s;
+    
+    /* Card Dimensions */
+    --card-w: 145px;
+    --card-h: 210px;
+    --card-w-active: 340px;
+    --card-h-active: 480px;
+    
+    /* Colors - Tuned to match Image */
+    --c-orange: #EB5E28;
+    --c-beige: #F2EFE9;
+    --c-blue: #2B96CC;
+    --c-green: #54E091;
+    --c-black: #1F1F1F;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* --- Main Page Header --- */
+.header {
+    text-align: center;
+    margin-top: 15vh;
+    z-index: 10;
+    padding: 0 20px;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+body.focus-mode .header {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.header h1 {
+    font-family: "Newsreader", serif;
+    font-size: 3.2rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+}
+
+.header p {
+    font-family: "Inter", sans-serif;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 340px;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* --- Stage Area --- */
+.stage {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.cards-container {
+    position: absolute;
+    bottom: 25%; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+/* --- Card Styles --- */
+.card {
+    position: absolute;
+    width: var(--card-w);
+    height: var(--card-h);
+    border-radius: 12px; /* Slightly tighter radius per image */
+    cursor: pointer;
+    
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow: hidden;
+    background-color: white;
+    
+    /* Visuals */
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 10px 25px rgba(0,0,0,0.1);
+    transform-origin: center center;
+    
+    /* Default Transform Variables */
+    --tx: 0px;
+    --ty: 0px;
+    --rot: 0deg;
+    
+    /* Apply Transforms */
+    transform: translateX(var(--tx)) translateY(var(--ty)) rotate(var(--rot));
+    
+    /* Transitions */
+    transition: 
+        transform var(--duration) var(--spring-easing),
+        width var(--duration) var(--spring-easing),
+        height var(--duration) var(--spring-easing),
+        border-radius var(--duration) var(--spring-easing),
+        box-shadow var(--duration) var(--spring-easing),
+        opacity 0.3s ease;
+    
+    will-change: transform, width, height;
+}
+
+/* Patterns */
+.pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160px; /* confine pattern to top area */
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: normal;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+/* 1. Orange */
+.card:nth-child(1) { background-color: var(--c-orange); color: white; }
+.card:nth-child(1) .pattern {
+    /* Vertical lines forming a curve */
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='fade' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0%25' stop-color='white' stop-opacity='0.5'/%3E%3Cstop offset='100%25' stop-color='white' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke='white' stroke-width='1.5' stroke-opacity='0.6'%3E%3Cline x1='12' y1='20' x2='12' y2='110' /%3E%3Cline x1='20' y1='20' x2='20' y2='115' /%3E%3Cline x1='28' y1='20' x2='28' y2='120' /%3E%3Cline x1='36' y1='20' x2='36' y2='128' /%3E%3Cline x1='44' y1='20' x2='44' y2='132' /%3E%3Cline x1='52' y1='20' x2='52' y2='135' /%3E%3Cline x1='60' y1='20' x2='60' y2='130' /%3E%3Cline x1='68' y1='20' x2='68' y2='125' /%3E%3Cline x1='76' y1='20' x2='76' y2='115' /%3E%3Cline x1='84' y1='20' x2='84' y2='105' /%3E%3Cline x1='92' y1='20' x2='92' y2='100' /%3E%3Cline x1='100' y1='20' x2='100' y2='98' /%3E%3Cline x1='108' y1='20' x2='108' y2='100' /%3E%3Cline x1='116' y1='20' x2='116' y2='105' /%3E%3Cline x1='124' y1='20' x2='124' y2='110' /%3E%3Cline x1='132' y1='20' x2='132' y2='115' /%3E%3Cline x1='140' y1='20' x2='140' y2='112' /%3E%3Cline x1='148' y1='20' x2='148' y2='110' /%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    opacity: 1;
+}
+
+/* 2. Beige */
+.card:nth-child(2) { background-color: var(--c-beige); color: #5A544B; }
+.card:nth-child(2) .pattern {
+    /* Pixel Grid */
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236B655D' fill-opacity='0.15'%3E%3Crect x='10' y='20' width='14' height='14'/%3E%3Crect x='28' y='20' width='14' height='14' opacity='0.5'/%3E%3Crect x='46' y='20' width='14' height='14'/%3E%3Crect x='64' y='20' width='14' height='14'/%3E%3Crect x='82' y='20' width='14' height='14' opacity='1.5'/%3E%3Crect x='100' y='20' width='14' height='14'/%3E%3Crect x='118' y='20' width='14' height='14'/%3E%3Crect x='136' y='20' width='14' height='14' opacity='0.6'/%3E%3Crect x='10' y='38' width='14' height='14' opacity='0.7'/%3E%3Crect x='28' y='38' width='14' height='14'/%3E%3Crect x='46' y='38' width='14' height='14' opacity='0.4'/%3E%3Crect x='64' y='38' width='14' height='14'/%3E%3Crect x='82' y='38' width='14' height='14'/%3E%3Crect x='100' y='38' width='14' height='14' opacity='0.8'/%3E%3Crect x='118' y='38' width='14' height='14'/%3E%3Crect x='136' y='38' width='14' height='14'/%3E%3Crect x='10' y='56' width='14' height='14'/%3E%3Crect x='28' y='56' width='14' height='14' opacity='0.6'/%3E%3Crect x='46' y='56' width='14' height='14'/%3E%3Crect x='64' y='56' width='14' height='14' opacity='1.2'/%3E%3Crect x='82' y='56' width='14' height='14'/%3E%3Crect x='100' y='56' width='14' height='14'/%3E%3Crect x='118' y='56' width='14' height='14' opacity='0.5'/%3E%3Crect x='136' y='56' width='14' height='14'/%3E%3Crect x='10' y='74' width='14' height='14' opacity='0.3'/%3E%3Crect x='28' y='74' width='14' height='14'/%3E%3Crect x='46' y='74' width='14' height='14'/%3E%3Crect x='64' y='74' width='14' height='14' opacity='0.9'/%3E%3Crect x='82' y='74' width='14' height='14'/%3E%3Crect x='100' y='74' width='14' height='14'/%3E%3Crect x='118' y='74' width='14' height='14' opacity='0.6'/%3E%3Crect x='136' y='74' width='14' height='14'/%3E%3Crect x='10' y='92' width='14' height='14'/%3E%3Crect x='28' y='92' width='14' height='14' opacity='1.1'/%3E%3Crect x='46' y='92' width='14' height='14'/%3E%3Crect x='64' y='92' width='14' height='14'/%3E%3Crect x='82' y='92' width='14' height='14' opacity='0.4'/%3E%3Crect x='100' y='92' width='14' height='14'/%3E%3Crect x='118' y='92' width='14' height='14'/%3E%3Crect x='136' y='92' width='14' height='14'/%3E%3C/g%3E%3C/svg%3E");
+    opacity: 1; 
+}
+
+/* 3. Blue */
+.card:nth-child(3) { background-color: var(--c-blue); color: white; }
+.card:nth-child(3) .pattern {
+    /* Wavy Mesh */
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 C 40 40, 60 20, 100 30 C 140 40, 160 30, 160 30' stroke='white' fill='none' stroke-opacity='0.2'/%3E%3Cpath d='M0 35 C 40 45, 60 25, 100 35 C 140 45, 160 35, 160 35' stroke='white' fill='none' stroke-opacity='0.2'/%3E%3Cpath d='M0 40 C 40 50, 60 30, 100 40 C 140 50, 160 40, 160 40' stroke='white' fill='none' stroke-opacity='0.2'/%3E%3Cpath d='M0 45 C 40 55, 60 35, 100 45 C 140 55, 160 45, 160 45' stroke='white' fill='none' stroke-opacity='0.3'/%3E%3Cpath d='M0 50 C 40 60, 60 40, 100 50 C 140 60, 160 50, 160 50' stroke='white' fill='none' stroke-opacity='0.3'/%3E%3Cpath d='M0 55 C 40 65, 60 45, 100 55 C 140 65, 160 55, 160 55' stroke='white' fill='none' stroke-opacity='0.3'/%3E%3Cpath d='M0 60 C 40 70, 60 50, 100 60 C 140 70, 160 60, 160 60' stroke='white' fill='none' stroke-opacity='0.3'/%3E%3Cpath d='M0 65 C 40 75, 60 55, 100 65 C 140 75, 160 65, 160 65' stroke='white' fill='none' stroke-opacity='0.3'/%3E%3Cpath d='M0 70 C 40 80, 60 60, 100 70 C 140 80, 160 70, 160 70' stroke='white' fill='none' stroke-opacity='0.2'/%3E%3Cpath d='M0 75 C 40 85, 60 65, 100 75 C 140 85, 160 75, 160 75' stroke='white' fill='none' stroke-opacity='0.2'/%3E%3Cpath d='M0 80 C 40 90, 60 70, 100 80 C 140 90, 160 80, 160 80' stroke='white' fill='none' stroke-opacity='0.2'/%3E%3C/svg%3E");
+}
+
+/* 4. Green */
+.card:nth-child(4) { background-color: var(--c-green); color: #004d2a; }
+.card:nth-child(4) .pattern {
+    /* Data Block */
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23198048' fill-opacity='0.6'%3E%3Crect x='10' y='25' width='2' height='10'/%3E%3Crect x='14' y='25' width='4' height='10'/%3E%3Crect x='20' y='25' width='2' height='10'/%3E%3Crect x='24' y='25' width='6' height='10'/%3E%3Crect x='32' y='25' width='2' height='10'/%3E%3Crect x='36' y='25' width='2' height='10'/%3E%3Crect x='40' y='25' width='4' height='10'/%3E%3Crect x='46' y='25' width='8' height='10'/%3E%3Crect x='56' y='25' width='2' height='10'/%3E%3Crect x='60' y='25' width='2' height='10'/%3E%3Crect x='64' y='25' width='4' height='10'/%3E%3Crect x='70' y='25' width='2' height='10'/%3E%3Crect x='74' y='25' width='6' height='10'/%3E%3Crect x='82' y='25' width='2' height='10'/%3E%3Crect x='86' y='25' width='8' height='10'/%3E%3Crect x='96' y='25' width='2' height='10'/%3E%3Crect x='100' y='25' width='4' height='10'/%3E%3Crect x='106' y='25' width='2' height='10'/%3E%3Crect x='110' y='25' width='2' height='10'/%3E%3Crect x='114' y='25' width='6' height='10'/%3E%3Crect x='122' y='25' width='2' height='10'/%3E%3Crect x='126' y='25' width='4' height='10'/%3E%3Crect x='132' y='25' width='8' height='10'/%3E%3Crect x='142' y='25' width='2' height='10'/%3E%3Crect x='10' y='37' width='4' height='10'/%3E%3Crect x='16' y='37' width='2' height='10'/%3E%3Crect x='20' y='37' width='8' height='10'/%3E%3Crect x='30' y='37' width='2' height='10'/%3E%3Crect x='34' y='37' width='2' height='10'/%3E%3Crect x='38' y='37' width='6' height='10'/%3E%3Crect x='46' y='37' width='2' height='10'/%3E%3Crect x='50' y='37' width='4' height='10'/%3E%3Crect x='56' y='37' width='2' height='10'/%3E%3Crect x='60' y='37' width='8' height='10'/%3E%3Crect x='70' y='37' width='2' height='10'/%3E%3Crect x='74' y='37' width='4' height='10'/%3E%3Crect x='80' y='37' width='2' height='10'/%3E%3Crect x='84' y='37' width='6' height='10'/%3E%3Crect x='92' y='37' width='2' height='10'/%3E%3Crect x='96' y='37' width='2' height='10'/%3E%3Crect x='100' y='37' width='8' height='10'/%3E%3Crect x='110' y='37' width='2' height='10'/%3E%3Crect x='114' y='37' width='4' height='10'/%3E%3Crect x='120' y='37' width='2' height='10'/%3E%3Crect x='124' y='37' width='6' height='10'/%3E%3Crect x='132' y='37' width='2' height='10'/%3E%3Crect x='136' y='37' width='4' height='10'/%3E%3Crect x='142' y='37' width='2' height='10'/%3E%3Crect x='10' y='49' width='2' height='10'/%3E%3Crect x='14' y='49' width='6' height='10'/%3E%3Crect x='22' y='49' width='2' height='10'/%3E%3Crect x='26' y='49' width='4' height='10'/%3E%3Crect x='32' y='49' width='2' height='10'/%3E%3Crect x='36' y='49' width='8' height='10'/%3E%3Crect x='46' y='49' width='2' height='10'/%3E%3Crect x='50' y='49' width='2' height='10'/%3E%3Crect x='54' y='49' width='6' height='10'/%3E%3Crect x='62' y='49' width='2' height='10'/%3E%3Crect x='66' y='49' width='4' height='10'/%3E%3Crect x='72' y='49' width='2' height='10'/%3E%3Crect x='76' y='49' width='8' height='10'/%3E%3Crect x='86' y='49' width='2' height='10'/%3E%3Crect x='90' y='49' width='2' height='10'/%3E%3Crect x='94' y='49' width='4' height='10'/%3E%3Crect x='100' y='49' width='2' height='10'/%3E%3Crect x='104' y='49' width='6' height='10'/%3E%3Crect x='112' y='49' width='2' height='10'/%3E%3Crect x='116' y='49' width='8' height='10'/%3E%3Crect x='126' y='49' width='2' height='10'/%3E%3Crect x='130' y='49' width='4' height='10'/%3E%3Crect x='136' y='49' width='2' height='10'/%3E%3Crect x='140' y='49' width='2' height='10'/%3E%3Crect x='10' y='61' width='8' height='10'/%3E%3Crect x='20' y='61' width='2' height='10'/%3E%3Crect x='24' y='61' width='4' height='10'/%3E%3Crect x='30' y='61' width='2' height='10'/%3E%3Crect x='34' y='61' width='6' height='10'/%3E%3Crect x='42' y='61' width='2' height='10'/%3E%3Crect x='46' y='61' width='2' height='10'/%3E%3Crect x='50' y='61' width='8' height='10'/%3E%3Crect x='60' y='61' width='2' height='10'/%3E%3Crect x='64' y='61' width='4' height='10'/%3E%3Crect x='70' y='61' width='2' height='10'/%3E%3Crect x='74' y='61' width='6' height='10'/%3E%3Crect x='82' y='61' width='2' height='10'/%3E%3Crect x='86' y='61' width='2' height='10'/%3E%3Crect x='90' y='61' width='4' height='10'/%3E%3Crect x='96' y='61' width='8' height='10'/%3E%3Crect x='106' y='61' width='2' height='10'/%3E%3Crect x='110' y='61' width='2' height='10'/%3E%3Crect x='114' y='61' width='6' height='10'/%3E%3Crect x='122' y='61' width='2' height='10'/%3E%3Crect x='126' y='61' width='4' height='10'/%3E%3Crect x='132' y='61' width='2' height='10'/%3E%3Crect x='136' y='61' width='8' height='10'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    opacity: 1;
+}
+
+/* 5. Black */
+.card:nth-child(5) { background-color: var(--c-black); color: white; }
+.card:nth-child(5) .pattern {
+    /* Wireframe UI */
+    background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23444' stroke-width='1' fill='none'%3E%3Crect x='10' y='20' width='40' height='70' rx='2'/%3E%3Crect x='55' y='20' width='95' height='70' rx='2'/%3E%3Crect x='60' y='25' width='15' height='30' rx='1'/%3E%3Crect x='80' y='25' width='15' height='30' rx='1'/%3E%3Crect x='100' y='25' width='15' height='30' rx='1'/%3E%3Crect x='120' y='25' width='15' height='30' rx='1'/%3E%3Cline x1='55' y1='60' x2='150' y2='60' stroke='%23333'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* --- Card Content --- */
+.card-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Start at bottom */
+}
+
+/* Internal Header (Hidden initially) */
+.card-internal-header {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+}
+
+.card-internal-header h3 {
+    font-family: "Newsreader", serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 6px;
+    opacity: 0.9;
+}
+
+.card-internal-header p {
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    max-width: 220px;
+}
+
+/* Card Title */
+.card-title {
+    font-family: "Newsreader", serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    transform-origin: left bottom;
+    transition: all 0.5s var(--spring-easing);
+    margin-bottom: 0;
+}
+
+/* --- STACKING & HOVER LOGIC --- */
+
+/* Stacking left to right (1 -> 5).
+   Rotation fans out.
+*/
+.card:nth-child(1) { --tx: -280px; --ty: 25px; --rot: -8deg; z-index: 1; }
+.card:nth-child(2) { --tx: -140px; --ty: 12px; --rot: -4deg;  z-index: 2; }
+.card:nth-child(3) { --tx: 0px;   --ty: 5px;  --rot: 0deg;   z-index: 3; }
+.card:nth-child(4) { --tx: 140px;  --ty: 12px; --rot: 4deg;   z-index: 4; }
+.card:nth-child(5) { --tx: 280px;  --ty: 25px; --rot: 8deg;  z-index: 5; }
+
+/* Hover Effect:
+   Use --tx variable to MAINTAIN horizontal pos. 
+   Change Scale, Y-pos and reset Rotation to 0 for "pop up" feel.
+*/
+.cards-container:not(.active-state) .card:hover {
+    transform: translateX(var(--tx)) translateY(-50px) scale(1.1) rotate(0deg);
+    z-index: 50; /* Bring to very front on hover */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* --- ACTIVE STATE --- */
+
+.card.is-active {
+    width: var(--card-w-active);
+    height: var(--card-h-active);
+    border-radius: 20px;
+    z-index: 100 !important;
+    cursor: default;
+    box-shadow: 0 40px 80px -10px rgba(0,0,0,0.3);
+    
+    /* Center on screen. 
+       Since container is at bottom: 15%, we need negative Y to go up.
+    */
+    transform: translate(0, -150px) rotate(0deg) !important;
+}
+
+/* Content Changes in Active State */
+.card.is-active .card-content {
+    justify-content: center; /* Move title to roughly center/middle */
+    padding-top: 160px;
+}
+
+.card.is-active .card-internal-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card.is-active .card-title {
+    font-size: 2.8rem;
+    margin-top: 40px; /* Push down slightly from absolute center */
+}
+
+/* Hide Siblings */
+.cards-container.active-state .card:not(.is-active) {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8) translateY(100px);
+    transition-duration: 0.4s;
+}
+
+/* Overlay */
+#overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 15;
+    display: none;
+}
+#overlay.active { display: block; }
+
+/* 
+   Active State Overrides for specific cards 
+*/
+/* Card 4 (Green) - Make pattern bigger on active */
+.card:nth-child(4).is-active .pattern {
+    height: 320px;
+}
+.card:nth-child(4).is-active .card-content {
+    padding-top: 170px;
+}
+.card:nth-child(4).is-active .card-internal-header {
+    top: 150px;
+}
