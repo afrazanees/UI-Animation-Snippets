@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection Animation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <!-- 
+      Scroll Spacer: 
+      Reduced to 350vh for a responsive, snappier scroll feel. 
+      This fixes the "dragging" feeling of logic.
+    -->
+    <div id="scroll-spacer" style="height: 350vh;"></div>
+
+    <!-- Fixed Viewport Container -->
+    <div class="fixed top-0 left-0 w-full h-screen flex flex-col items-center justify-center z-10 p-4">
+        
+        <!-- Background Grid -->
+        <div class="grid-bg"></div>
+
+        <!-- Main Content Card -->
+        <div class="relative z-20 w-full max-w-md card-container">
+            
+            <!-- Brutalist Corner Decorations -->
+            <div class="cross-marker tl"></div>
+            <div class="cross-marker tr"></div>
+            <div class="cross-marker bl"></div>
+            <div class="cross-marker br"></div>
+
+            <div id="accordion-wrapper" class="w-full">
+                
+                <!-- Item 1: CAPTURE (Default Active) -->
+                <div class="accordion-item active" data-index="0">
+                    <div class="flex justify-between items-center px-6 py-6 cursor-default header-content">
+                        <div class="font-bold tracking-widest text-xs flex items-center uppercase">
+                            <span class="mr-3 text-lg leading-none" style="transform: translateY(-1px);">■</span> Capture
+                        </div>
+                        <div class="text-sm mono-num">01/04</div>
+                    </div>
+                    <div class="accordion-grid">
+                        <div class="accordion-content px-6">
+                            <div class="pb-8">
+                                <h2 class="text-3xl leading-none mb-6">
+                                    WE COLLECT DATA FROM MULTIPLE SOURCES.
+                                </h2>
+                                <div class="flex flex-wrap items-start">
+                                    <span class="tag">DRONE</span>
+                                    <span class="tag">ROVER</span>
+                                    <span class="tag">SURVEYING EQUIP.</span>
+                                    <span class="tag">MOISTURE</span>
+                                    <span class="tag">SALINITY</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: ANALYSE -->
+                <div class="accordion-item" data-index="1">
+                    <div class="flex justify-between items-center px-6 py-6 cursor-default header-content">
+                        <div class="font-bold tracking-widest text-xs flex items-center uppercase">
+                            <span class="mr-3 text-lg leading-none" style="transform: translateY(-1px);">■</span> Analyse
+                        </div>
+                        <div class="text-sm mono-num">02/04</div>
+                    </div>
+                    <div class="accordion-grid">
+                        <div class="accordion-content px-6">
+                            <div class="pb-8">
+                                <h2 class="text-3xl leading-none mb-6">
+                                    WE MAP TRENDS AND IDENTIFY ISSUES.
+                                </h2>
+                                <div class="flex flex-wrap items-start">
+                                    <span class="tag">DRY SPOTS</span>
+                                    <span class="tag">PESTS</span>
+                                    <span class="tag">DAMAGE</span>
+                                    <span class="tag">COMPACTION</span>
+                                    <span class="tag">DISEASE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: REPORT -->
+                <div class="accordion-item" data-index="2">
+                    <div class="flex justify-between items-center px-6 py-6 cursor-default header-content">
+                        <div class="font-bold tracking-widest text-xs flex items-center uppercase">
+                            <span class="mr-3 text-lg leading-none" style="transform: translateY(-1px);">■</span> Report
+                        </div>
+                        <div class="text-sm mono-num">03/04</div>
+                    </div>
+                    <div class="accordion-grid">
+                        <div class="accordion-content px-6">
+                            <div class="pb-8">
+                                <h2 class="text-3xl leading-none mb-6">
+                                    WE TRANSLATE DATA INTO VISUALS.
+                                </h2>
+                                <div class="flex flex-wrap items-start">
+                                    <span class="tag">QUALITY INDEX</span>
+                                    <span class="tag">TURF MATRIX</span>
+                                    <span class="tag">DAMAGE</span>
+                                    <span class="tag">ACTION PLAN</span>
+                                    <span class="tag">INSIGHTS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: PERFORM -->
+                <div class="accordion-item" data-index="3">
+                    <div class="flex justify-between items-center px-6 py-6 cursor-default header-content">
+                        <div class="font-bold tracking-widest text-xs flex items-center uppercase">
+                            <span class="mr-3 text-lg leading-none" style="transform: translateY(-1px);">■</span> Perform
+                        </div>
+                        <div class="text-sm mono-num">04/04</div>
+                    </div>
+                    <div class="accordion-grid">
+                        <div class="accordion-content px-6">
+                            <div class="pb-8">
+                                <h2 class="text-3xl leading-none mb-6">
+                                    GAIN CLARITY FOR DECISIONS.
+                                </h2>
+                                <div class="flex flex-wrap items-start">
+                                    <span class="tag">FERTILISER</span>
+                                    <span class="tag">LESS IRRIGATION</span>
+                                    <span class="tag">SPOT IRRIGATION</span>
+                                    <span class="tag">CONTROL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+:root {
+    --bg-deep-blue: #000336;
+    --grid-line: #0f166b;
+    --tag-blue: #2546eb;
+    --text-white: #ffffff;
+    --border-blue: #3d4eb0; 
+    --shadow-dark: #000000;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-deep-blue);
+    color: var(--text-white);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Grid Background */
+.grid-bg {
+    background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 80px 80px; 
+    background-position: center top;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+/* Brutalist Card Container */
+.card-container {
+    border: 2px solid var(--border-blue);
+    background-color: var(--bg-deep-blue);
+    box-shadow: 12px 12px 0px var(--shadow-dark);
+    position: relative;
+    /* Add min-height to stabilize center of gravity */
+    min-height: 400px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Decorative Corner Crosses */
+.cross-marker {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 30;
+}
+.cross-marker::before, .cross-marker::after {
+    content: '';
+    position: absolute;
+    background: white;
+}
+.cross-marker::before { width: 100%; height: 2px; top: 4px; left: 0; }
+.cross-marker::after { width: 2px; height: 100%; left: 4px; top: 0; }
+
+.tl { top: -6px; left: -6px; }
+.tr { top: -6px; right: -6px; }
+.bl { bottom: -6px; left: -6px; }
+.br { bottom: -6px; right: -6px; }
+
+/* Accordion Logic */
+.accordion-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    /* Faster transition for "harder" feel */
+    transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: grid-template-rows;
+}
+
+.accordion-content {
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    /* Snappier content reveal */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Active State */
+.accordion-item.active .accordion-grid {
+    grid-template-rows: 1fr;
+}
+
+.accordion-item.active .accordion-content {
+    opacity: 1;
+    transform: translateY(0);
+    /* Minimal delay to prevent overlap visual glitches */
+    transition-delay: 0.1s; 
+}
+
+/* Items Border Styling */
+.accordion-item {
+    border-bottom: 2px solid var(--border-blue);
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+/* Header Styling */
+.header-content {
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+}
+.accordion-item.active .header-content {
+    opacity: 1;
+}
+
+/* Brutalist Tags */
+.tag {
+    background-color: var(--tag-blue);
+    padding: 8px 12px;
+    border-radius: 0; 
+    font-size: 0.75rem;
+    font-weight: 800; 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    margin-right: 0.6rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.5); 
+    white-space: nowrap;
+}
+
+/* Typography tweaks */
+h2 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.mono-num {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
