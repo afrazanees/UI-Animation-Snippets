@@ -1,0 +1,75 @@
+/* Custom Utilities */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll due to scaling */
+}
+
+.editorial-font {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: -0.04em; /* Tighter tracking for artistic look */
+}
+
+/* Row Base Styles */
+.item-row {
+    /* UPDATED TRANSITION: Smoother, liquid-like pop out effect */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease, box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform; /* Performance optimization for smoother animation */
+    
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    /* Default Height */
+    height: 16rem; /* Slightly reduced height to balance smaller text */
+    
+    /* Overlap Logic */
+    margin-top: -3.5rem; /* Moderate overlap */
+    
+    /* Visual Separation */
+    border-top: 2px solid black; /* The line */
+    border-bottom: 2px solid black; /* Ensure bottom is closed too */
+    
+    /* The "White Spacing" Hack using shadow to create a gap above the border without affecting layout flow */
+    box-shadow: 0 -12px 0 #f5f5f5; 
+}
+
+/* Reset overlap/styles for the very first item */
+.item-row:first-child {
+    margin-top: 0;
+    box-shadow: none;
+    border-top: 2px solid black;
+}
+
+/* Hover State - The "Pop Out" */
+.item-row:hover {
+    background-color: #E6FF00;
+    /* Lift up drastically to reveal the hidden bottom section (clear the overlap) */
+    transform: translateY(-5rem) scale(1.01); 
+    /* Deep shadow for pop effect */
+    box-shadow: 0 40px 70px -15px rgba(0, 0, 0, 0.4); 
+    z-index: 50; /* Bring to very front */
+    border-color: black;
+}
+
+/* Content Visibility - Always Visible */
+.content-wrapper {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image-wrapper img {
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); /* Matching smoothness for image */
+}
+
+.item-row:hover .image-wrapper img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+/* Default grayscale for aesthetic */
+.image-wrapper img {
+    filter: grayscale(100%);
+}

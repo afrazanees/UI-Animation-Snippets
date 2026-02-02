@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editorial Hover Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body class="w-full bg-gray-100 pb-40"> <!-- Increased padding bottom for the lift effect -->
+
+    <!-- Header / Top Bar -->
+    <div class="w-full border-b-2 border-black p-5 md:px-12 flex justify-between items-center bg-gray-50 sticky top-0 z-[60]">
+        <span class="text-sm font-black uppercase tracking-widest text-black editorial-font">Services // 2026</span>
+        <div class="h-3 w-3 bg-black rounded-full"></div>
+    </div>
+
+    <!-- The List - Full Width -->
+    <div id="editorial-list" class="w-full bg-white pt-10 px-0"> <!-- Padding top for breathability -->
+        
+        <!-- Item 1 -->
+        <div class="item-row group w-full cursor-pointer overflow-hidden">
+            <div class="flex h-full w-full items-center">
+                
+                <!-- 1. Title Section (30% width) -->
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-r-2 border-black/10">
+                    <!-- Adjusted Text Size: 9xl -> 7xl for better fit -->
+                    <h2 class="editorial-font font-bold text-4xl md:text-6xl lg:text-7xl uppercase leading-[0.9] text-black transition-transform duration-300 origin-left group-hover:translate-x-4">
+                        Editorial
+                    </h2>
+                </div>
+
+                <!-- 2. Image Section (40% width for Landscape) -->
+                <div class="w-[40%] h-full flex justify-center items-center p-6 lg:p-8 overflow-hidden relative">
+                    <!-- Aspect ratio wrapper for landscape -->
+                    <div class="image-wrapper w-full aspect-[16/8] relative overflow-hidden border-2 border-black bg-gray-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1200&auto=format&fit=crop" 
+                             alt="Landscape Editorial Fashion" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- 3. Description Section (30% width) -->
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-l-2 border-black/10">
+                    <div class="content-wrapper">
+                        <!-- Adjusted Text Sizes -->
+                        <p class="text-sm md:text-base lg:text-lg font-bold uppercase leading-tight tracking-wide max-w-md font-sans">
+                            Curated, story-driven sessions.
+                        </p>
+                        <p class="mt-4 text-xs md:text-sm opacity-100 font-medium text-gray-800 leading-relaxed max-w-xs">
+                            Translating brand essence into magazine-worthy imagery. Every frame is crafted emotionally and visually.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="item-row group w-full cursor-pointer overflow-hidden">
+            <div class="flex h-full w-full items-center">
+                
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-r-2 border-black/10">
+                    <h2 class="editorial-font font-bold text-4xl md:text-6xl lg:text-7xl uppercase leading-[0.9] text-black transition-transform duration-300 origin-left group-hover:translate-x-4">
+                        Direction & Styling
+                    </h2>
+                </div>
+
+                <div class="w-[40%] h-full flex justify-center items-center p-6 lg:p-8 overflow-hidden relative">
+                    <div class="image-wrapper w-full aspect-[16/8] relative overflow-hidden border-2 border-black bg-gray-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=1200&auto=format&fit=crop" 
+                             alt="Landscape Styling" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-l-2 border-black/10">
+                    <div class="content-wrapper">
+                        <p class="text-sm md:text-base lg:text-lg font-bold uppercase leading-tight tracking-wide max-w-md font-sans">
+                            Creative oversight for cohesion.
+                        </p>
+                        <p class="mt-4 text-xs md:text-sm opacity-100 font-medium text-gray-800 leading-relaxed max-w-xs">
+                            Includes moodboarding, prop curation, set styling, and on-location seamless creative process management.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="item-row group w-full cursor-pointer overflow-hidden">
+            <div class="flex h-full w-full items-center">
+                
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-r-2 border-black/10">
+                    <h2 class="editorial-font font-bold text-4xl md:text-6xl lg:text-7xl uppercase leading-[0.9] text-black transition-transform duration-300 origin-left group-hover:translate-x-4">
+                        Content<br>Suites
+                    </h2>
+                </div>
+
+                <div class="w-[40%] h-full flex justify-center items-center p-6 lg:p-8 overflow-hidden relative">
+                    <div class="image-wrapper w-full aspect-[16/8] relative overflow-hidden border-2 border-black bg-gray-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200&auto=format&fit=crop" 
+                             alt="Landscape Launch" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-l-2 border-black/10">
+                    <div class="content-wrapper">
+                        <p class="text-sm md:text-base lg:text-lg font-bold uppercase leading-tight tracking-wide max-w-md font-sans">
+                            Custom imagery packages.
+                        </p>
+                        <p class="mt-4 text-xs md:text-sm opacity-100 font-medium text-gray-800 leading-relaxed max-w-xs">
+                            Delivered in versatile formats ideal for web, social, and press to hit your marketing goals.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Item 4 -->
+        <div class="item-row group w-full cursor-pointer overflow-hidden">
+            <div class="flex h-full w-full items-center">
+                
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-r-2 border-black/10">
+                    <h2 class="editorial-font font-bold text-4xl md:text-6xl lg:text-7xl uppercase leading-[0.9] text-black transition-transform duration-300 origin-left group-hover:translate-x-4">
+                        Brand<br>Identity
+                    </h2>
+                </div>
+
+                <div class="w-[40%] h-full flex justify-center items-center p-6 lg:p-8 overflow-hidden relative">
+                    <div class="image-wrapper w-full aspect-[16/8] relative overflow-hidden border-2 border-black bg-gray-200 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop" 
+                             alt="Landscape Brand Identity" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="w-[30%] h-full flex items-center px-6 md:px-12 border-l-2 border-black/10">
+                    <div class="content-wrapper">
+                        <p class="text-sm md:text-base lg:text-lg font-bold uppercase leading-tight tracking-wide max-w-md font-sans">
+                            Defining visual DNA.
+                        </p>
+                        <p class="mt-4 text-xs md:text-sm opacity-100 font-medium text-gray-800 leading-relaxed max-w-xs">
+                            Logo design, typography systems, and color palettes that stand the test of time and market trends.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
