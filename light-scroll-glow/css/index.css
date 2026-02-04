@@ -1,0 +1,31 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9F9F9;
+    overflow-x: hidden;
+    /* Hide default scrollbar to encourage the smooth feel, optional */
+    scrollbar-width: none; 
+}
+
+body::-webkit-scrollbar { 
+    display: none; 
+}
+
+.text-fluid {
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1.1;
+}
+
+/* * Important: We remove standard scroll-behavior: smooth 
+ * because we are implementing a custom physics-based scroll 
+ * interpolation in JS for the animation.
+ */
+html {
+    scroll-behavior: auto;
+}
+
+/* GPU acceleration for smooth animations */
+#sun-orb, #hero-content {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}

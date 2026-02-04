@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light that feels like sun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body class="text-neutral-900">
+
+    <!-- Pure White Page at Top -->
+    <div class="relative w-full h-screen bg-white"></div>
+
+    <!-- Scroll Track -->
+    <div class="relative h-[500vh]" id="scroll-track">
+        
+        <div class="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden px-4">
+            
+            <!-- Sun Orb -->
+            <!-- Updated blur logic in JS to create the soft border effect seen in screenshots -->
+            <div id="sun-orb" 
+                 class="absolute bg-white rounded-full w-64 h-64 pointer-events-none z-0 will-change-transform"
+                 style="transform: scale(25); filter: blur(0px); opacity: 0.1;">
+            </div>
+
+            <!-- Hero Content -->
+            <div id="hero-content" class="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto will-change-transform">
+                
+                <h1 class="text-fluid font-extrabold tracking-tight mb-8">
+                    <div class="flex flex-wrap justify-center items-center gap-x-4 md:gap-x-6">
+                        <span>Light</span>
+                        <div class="relative inline-block h-[0.7em] aspect-[4/3] rounded-3xl overflow-hidden shadow-sm bg-neutral-200 align-middle -mb-2 group cursor-pointer transition-transform hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Office Light" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <span>that</span>
+                    </div>
+                    <span>feels like sun.</span>
+                </h1>
+
+                <p id="hero-subtext" class="text-lg md:text-xl text-neutral-600 max-w-2xl leading-relaxed font-medium">
+                    As the first hybrid of desk and daylight luminaire, 
+                    HEAVN One delivers ideal light at any time of day and 
+                    enhances your well-being and performance.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Pure White Section Below -->
+    <section class="relative bg-white w-full h-screen z-20"></section>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
