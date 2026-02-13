@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Text Distortion</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <canvas id="glCanvas"></canvas>
+    <div id="instructions">Hover over the text</div>
+
+    <!-- Vertex Shader -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec2 a_position;
+        attribute vec2 a_texCoord;
+        
+        varying vec2 v_texCoord;
+        
+        void main() {
+            // Convert from 0->1 space to -1->1 space
+            gl_Position = vec4(a_position * 2.0 - 1.0, 0.0, 1.0);
+            v_texCoord = a_texCoord;
+        }
+    </script>
+
+    <!-- Fragment Shader -->
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        
+        uniform sampler2D u_image;
+        uniform vec2 u_mouse;
+        uniform float u_time;
+        uniform float u_aspect;
+        uniform vec2 u_velocity; // Mouse velocity for intensity
+        
+        varying vec2 v_texCoord;
+        
+        void main() {
+            vec2 uv = v_texCoord;
+            
+            // Correct for aspect ratio for distance calculations
+            vec2 aspectCorrectedUV = uv;
+            aspectCorrectedUV.x *= u_aspect;
+            
+            vec2 aspectCorrectedMouse = u_mouse;
+            aspectCorrectedMouse.x *= u_aspect;
+            
+            // Calculate distance to mouse
+            vec2 toMouse = aspectCorrectedUV - aspectCorrectedMouse;
+            float dist = length(toMouse);
+            
+            // Interaction parameters
+            float radius = 0.25; // How large the effect area is
+            float strength = smoothstep(radius, 0.0, dist); // 1.0 at center, 0.0 at radius
+            
+            // Fluid wave effect parameters
+            float waveFreq = 25.0;
+            float waveSpeed = 8.0;
+            
+            // Calculate distortion
+            // We combine a directional push (based on mouse movement) with a sine wave
+            
+            // 1. Sine wave distortion (The "liquid" wiggle)
+            // It gets stronger closer to the mouse
+            vec2 waveOffset = vec2(
+                sin(uv.y * waveFreq + u_time * waveSpeed),
+                cos(uv.x * waveFreq + u_time * waveSpeed)
+            );
+            
+            // 2. Pinch/Bulge distortion
+            // Slight push away from center of mouse
+            vec2 pushOffset = normalize(toMouse) * -0.02;
+            
+            // Combine effects
+            // Base intensity on mouse velocity + static presence
+            float intensity = strength * (0.01 + length(u_velocity) * 0.05);
+            
+            // Apply distortion to UV
+            vec2 distortedUV = uv + (waveOffset * 0.4 + pushOffset) * intensity * 5.0;
+            
+            // Add a slight chromatic aberration for extra "glassy" feel
+            float r = texture2D(u_image, distortedUV + vec2(0.002, 0.0) * strength).r;
+            float g = texture2D(u_image, distortedUV).g;
+            float b = texture2D(u_image, distortedUV - vec2(0.002, 0.0) * strength).b;
+            float a = texture2D(u_image, distortedUV).a;
+            
+            gl_FragColor = vec4(r, g, b, a);
+        }
+    </script>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
