@@ -10,6 +10,7 @@ A collection of interactive animations built with HTML, CSS, and JavaScript. Ins
 - **Light Scroll Glow** - Scroll-based light animations
 - **Data Visualization Scroll** - Scroll-triggered visualizations
 - **Component Card Reveal** - Card reveal animations
+- **Liquid Text Distortion** - Hover-driven liquid text distortion
 
 ## Quick Start
 
