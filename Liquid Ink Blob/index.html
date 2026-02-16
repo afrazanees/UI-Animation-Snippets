@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Ink Blob Animation</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="grain"></div>
+        
+        <div class="canvas-wrapper">
+            <canvas id="blobCanvas"></canvas>
+        </div>
+        
+        <div class="text-content">
+            <div class="title">STUDIO</div>
+        </div>
+
+        <div class="cursor"></div>
+        <div class="cursor-ring"></div>
+
+        <div class="instructions">Move your mouse to create liquid ink</div>
+    </div>
+
+    <!-- SVG Filters -->
+    <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="
+                    1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 23 -11" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
