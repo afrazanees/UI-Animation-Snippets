@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000000; /* Pure black */
+    font-family: 'Arial', sans-serif;
+}
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+#instructions {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}

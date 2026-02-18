@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetic Text Stretcher</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <canvas id="glCanvas"></canvas>
+    <div id="instructions">Move cursor to stretch</div>
+
+    <!-- Vertex Shader -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec2 a_position;
+        attribute vec2 a_texCoord;
+        
+        varying vec2 v_texCoord;
+        
+        void main() {
+            gl_Position = vec4(a_position * 2.0 - 1.0, 0.0, 1.0);
+            v_texCoord = a_texCoord;
+        }
+    </script>
+
+    <!-- Fragment Shader -->
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        
+        uniform sampler2D u_image;
+        uniform vec2 u_mouse;
+        uniform float u_aspect;
+        uniform vec2 u_velocity;
+        
+        varying vec2 v_texCoord;
+        
+        void main() {
+            vec2 uv = v_texCoord;
+            
+            // Aspect corrected coordinates for distance calculation
+            vec2 center = u_mouse;
+            center.x *= u_aspect;
+            
+            vec2 p = uv;
+            p.x *= u_aspect;
+            
+            // Calculate distance
+            float dist = length(p - center);
+            
+            // Interaction Radius
+            // Slightly broader radius for a smoother feel
+            float radius = 0.4;
+            float force = smoothstep(radius, 0.0, dist);
+            
+            // Sharpen the force curve for a cleaner falloff
+            force = pow(force, 2.0);
+            
+            // --- KINETIC STRETCH LOGIC ---
+            // Pure linear stretch based on velocity
+            
+            // Reduced multiplier for minimal effect
+            vec2 stretch = u_velocity * force * 1.0; 
+            
+            // Apply single stretch vector (No RGB split)
+            // Subtracting the stretch moves pixels along with the mouse drag
+            vec2 distortedUV = uv - stretch;
+            
+            // Sample the texture once
+            vec4 color = texture2D(u_image, distortedUV);
+            
+            gl_FragColor = color;
+        }
+    </script>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
