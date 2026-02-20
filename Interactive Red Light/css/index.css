@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* UI Overlay Layer */
+.ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Let mouse pass through to canvas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+/* Large "up" text */
+.big-text {
+    font-size: 25vw;
+    font-weight: 900; /* Made bolder */
+    color: #fff;
+    line-height: 1;
+    margin-top: 10vh;
+    margin-left: 5vw; /* Crop it slightly as seen in video */
+    letter-spacing: -0.05em;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .big-text {
+        font-size: 40vw;
+        margin-left: -2vw;
+    }
+}
