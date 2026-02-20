@@ -12,6 +12,7 @@ A collection of interactive animations built with HTML, CSS, and JavaScript. Ins
 - **Component Card Reveal** - Card reveal animations
 - **Liquid Text Distortion** - Hover-driven liquid text distortion
 - **Liquid Ink Blob** - Mouse-driven liquid ink blob
+- **Kinetic Text Stretcher** - WebGL text stretch on cursor move
 
 ## Quick Start
 
