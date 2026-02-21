@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    cursor: none; /* Hide default cursor to match video style */
+}
+canvas {
+    display: block;
+}
