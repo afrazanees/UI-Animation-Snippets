@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    /* subtle premium vignette */
+    background: radial-gradient(circle at center, #ffffff 0%, #f0f0f0 100%);
+    cursor: none; 
+    font-family: sans-serif;
+}
+canvas {
+    display: block;
+}
+/* Minimal UI hint */
+#hint {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: #ccc;
+    pointer-events: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.5s;
+}
