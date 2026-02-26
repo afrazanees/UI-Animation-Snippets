@@ -15,6 +15,7 @@ A collection of interactive animations built with HTML, CSS, and JavaScript. Ins
 - **Kinetic Text Stretcher** - WebGL text stretch on cursor move
 - **Interactive Red Light** - Three.js red light interaction
 - **Bitcoin Pixel Ripple 2D** - Canvas-based pixel ripple animation
+- **Bitcoin Pixel Ripple 3D** - Canvas pixel ripple with depth cue
 
 ## Quick Start
 
